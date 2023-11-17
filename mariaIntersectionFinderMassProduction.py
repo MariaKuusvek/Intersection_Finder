@@ -6,14 +6,21 @@ import os
 from pyproj import Geod
 import cv2, glob
 
+from mpi4py import MPI
+comm = MPI.COMM_WORLD
+rank = comm.Get_rank()
+size = comm.Get_size()
+
 
 def main():
     est97 = Proj(init='epsg:3301')
     wgs84 = Proj(init='epsg:4326')
     file_names = glob.glob("sample_maps_zipped/orto_gif_1km/*")
-    answerfile = open("mariaIntersections.txt", "w")
+    answerfile = open(f"mariaIntersections{rank}.txt", "w")
     display = False
-    for filename in file_names:
+    for i, filename in enumerate(file_names):
+        if i % size != rank:
+            continue
         spl = filename.split("/")[-1].split(".")[0].split("_")
         x = int(spl[1]) + 500
         y = int(spl[2]) + 500
