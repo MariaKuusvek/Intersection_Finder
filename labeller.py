@@ -1,9 +1,11 @@
+#!/usr/bin/python
 import cv2
 import numpy as np
 import math
 import os
 import glob
 import json
+import sys
 
 conf = json.loads(open("seetings.json","r").read())
 
@@ -105,6 +107,14 @@ for a, f in enumerate(sorted(glob.glob(f"{dir}*.png"))):
             folder = folder3
             print(f"{basefolder}{os.path.sep}{folder}{os.path.sep}" + folder.split("_")[1] + "_" + p)
             im = cv2.imread(f"{basefolder}{os.path.sep}{folder}{os.path.sep}" + folder.split("_")[1] + "_" + p)
+        elif k == ord(conf["back_key"]):
+            savef = open("saved","r")
+            contents = savef.readlines()[:-1]
+            savef.close()
+            savef = open("saved", "w")
+            savef.write("".join(contents))
+            savef.close()
+            os.execv(sys.argv[0], sys.argv)
 
     savef = open("saved", "a")
     savef.write(",".join(",".join(str(f).split(".")[0].split("_")[1:]).split(",")[1:]))
