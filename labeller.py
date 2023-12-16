@@ -62,7 +62,12 @@ for a, f in enumerate(sorted(glob.glob(f"{dir}*.png"))):
 
     #p = os.fsdecode(f)
     print(f"{basefolder}{os.path.sep}{folder}{os.path.sep}" + folder.split("_")[1] + "_" + p)
-    im = cv2.imread(f"{basefolder}{os.path.sep}{folder}{os.path.sep}" + folder.split("_")[1] + "_" + p)
+    if folder == folder4:
+        im1 = cv2.imread(f"{basefolder}{os.path.sep}{folder2}{os.path.sep}" + folder2.split("_")[1] + "_" + p)
+        im2 = cv2.imread(f"{basefolder}{os.path.sep}{folder3}{os.path.sep}" + folder3.split("_")[1] + "_" + p)
+        im = im1 // 2 + im2 // 2
+    else:
+        im = cv2.imread(f"{basefolder}{os.path.sep}{folder}{os.path.sep}" + folder.split("_")[1] + "_" + p)
     #cap = cv2.VideoCapture()
     #ret, im = cap.read()
     #cap.release()
