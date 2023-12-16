@@ -20,6 +20,7 @@ hovercoords = (0,0)
 def clickHandler(event, x, y, flags, params):
     #if event == cv2.EVENT_LBUTTONDOWN:
     #    crosses.append((x,y))
+    global hovercoords
     hovercoords = (x,y)
 
 folder1 = "black_gif_1km"
@@ -73,7 +74,6 @@ for a, f in enumerate(sorted(glob.glob(f"{dir}*.png"))):
     clickmode = "add"
     while 1:
         imn = im.copy()
-        imn = cv2.putText(imn, clickmode, (50,50), cv2.cv2.FONT_HERSHEY_SIMPLEX, 10, )
         for c in crosses:
             imn = cv2.circle(imn, c, 3, (255,0,0), 2)
         cv2.imshow("i1",imn)
@@ -94,7 +94,7 @@ for a, f in enumerate(sorted(glob.glob(f"{dir}*.png"))):
                 if (d:=abs(c[0]-hovercoords[0])+abs(c[1]-hovercoords[1])) < mind:
                     mind = d
                     mino = ci
-            del crosses[ci]
+            del crosses[mino]
         elif k == ord(conf["folder1_key"]):
             folder = folder1
             im = cv2.imread(f"sample_maps_zipped{os.path.sep}{folder}{os.path.sep}" + p)
