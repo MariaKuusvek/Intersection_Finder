@@ -135,6 +135,8 @@ for a, f in enumerate(sorted(glob.glob(f"{dir}*.png"))):
             savef.write("".join(contents))
             savef.close()
             os.execv(sys.argv[0], sys.argv)
+        elif k == ord(conf["subway_key"]):
+            os.system('mpv "https://www.youtube.com/watch?v=7ghSziUQnhs&ab_channel=Throneful"')
 
     savef = open("saved", "a")
     savef.write(",".join(",".join(str(f).split(".")[0].split("_")[1:]).split(",")[1:]))
