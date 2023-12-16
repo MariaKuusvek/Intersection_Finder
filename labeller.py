@@ -78,8 +78,8 @@ for a, f in enumerate(sorted(glob.glob(f"{dir}*.png"))):
     while 1:
         imn = im.copy()
         ctr+=1
-        imn = cv2.putText(imn, f"{a//32}/{6000//32}", (50,50), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,0,255), 1)
-        imn = cv2.putText(imn, others, (50, 100), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,0,255), 1)
+        imn = cv2.putText(imn, f"{a//32}/{6000//32}", (50,50), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,0,255), 2)
+        imn = cv2.putText(imn, others, (50, 100), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,0,255), 2)
         for c in crosses:
             imn = cv2.circle(imn, (int(c[0] / conf['dimx'] * 1000), int(c[1] / conf['dimy'] * 1000)), ((ctr//10)%10)+1, ((ctr*11)%255,(ctr*7)%255,(ctr*3)%255), 2)
         imn = cv2.resize(imn, (conf["dimx"], conf["dimy"]))
@@ -131,3 +131,4 @@ for a, f in enumerate(sorted(glob.glob(f"{dir}*.png"))):
     savef.write("|".join([str(c[0] / conf['dimx'] * 1000)+";"+str(c[1] / conf['dimy'] * 1000) for c in crosses]))
     savef.write("\n")
     savef.close()
+    amount_done += 1
