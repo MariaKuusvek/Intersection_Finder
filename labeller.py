@@ -36,9 +36,10 @@ for a, f in enumerate(sorted(os.listdir(dir))):
         continue
 
     p = os.fsdecode(f)
-    cap = cv2.VideoCapture("sample_maps_zipped/map_gif_1km/" + p)
-    ret, im = cap.read()
-    cap.release()
+    im = cv2.imread("sample_maps_zipped/map_gif_1km/" + p)
+    #cap = cv2.VideoCapture()
+    #ret, im = cap.read()
+    #cap.release()
 
     
     crosses = []
