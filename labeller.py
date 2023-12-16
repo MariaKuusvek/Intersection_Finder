@@ -59,9 +59,11 @@ for a, f in enumerate(sorted(glob.glob(f"{dir}*.png"))):
     #ret, im = cap.read()
     #cap.release()
 
-    coords = str(f).split(".")[0].split("_")[1:]
-    #crosses = [premade[tuple(coords)]]
-    crosses = []
+    coords = str(f).split(".")[0].split("_")[-2:]
+    try:
+        crosses = [(int(i[0]),int(i[1])) for i in premade[tuple(coords)]]
+    except:
+        crosses = []
     cv2.namedWindow("i1") 
     cv2.setMouseCallback("i1", clickHandler)
     clickmode = "add"
