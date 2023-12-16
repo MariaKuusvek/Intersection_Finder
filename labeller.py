@@ -3,17 +3,9 @@ import numpy as np
 import math
 import os
 import glob
+import json
 
-conf = {
-    "next_key": " ",
-    "del_key": "d",
-    "quit_key": "q",
-    "cross_key": "a",
-    "del_single_key": "s",
-    "folder1_key": "1",
-    "folder2_key": "2",
-    "folder3_key": "3"
-}
+conf = json.loads(open("seetings.json","r").read())
 
 
 hovercoords = (0,0)
@@ -26,7 +18,7 @@ def clickHandler(event, x, y, flags, params):
 folder1 = "train_black"
 folder2 = "train_map"
 folder3 = "train_orto"
-basefolder = "temp"
+basefolder = conf["basefolder"]
 folder = folder2
 
 dir = f"{basefolder}{os.path.sep}{folder}{os.path.sep}"
