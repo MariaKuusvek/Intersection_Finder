@@ -2,12 +2,14 @@ import cv2
 import numpy as np
 import math
 import os
+import glob
+
 
 def clickHandler(event, x, y, flags, params):
     if event == cv2.EVENT_LBUTTONDOWN:
         crosses.append((x,y))
 
-dir = os.fsencode("sample_maps_zipped/map_gif_1km/")
+dir = f"sample_maps_zipped{os.path.sep}map_gif_1km{os.path.sep}"
 
 premadef = open("mariaIntersections.txt", "r")
 premade = {}
@@ -25,7 +27,7 @@ lines = [x.split(",")[:2] for x in lines]
 lines = {(int(x[0]), int(x[1])) for x in lines}
 
 nr = 0
-for a, f in enumerate(sorted(os.listdir(dir))):
+for a, f in enumerate(sorted(glob.glob(f"{dir}*.png"))):
     if a % 1 != nr:
         continue
     #print(f)
@@ -36,7 +38,7 @@ for a, f in enumerate(sorted(os.listdir(dir))):
         continue
 
     p = os.fsdecode(f)
-    im = cv2.imread("sample_maps_zipped/map_gif_1km/" + p)
+    im = cv2.imread(f"sample_maps_zipped{os.path.sep}map_gif_1km{os.path.sep}" + p)
     #cap = cv2.VideoCapture()
     #ret, im = cap.read()
     #cap.release()
