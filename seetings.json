@@ -7,5 +7,6 @@
     "folder1_key": "1",
     "folder2_key": "2",
     "folder3_key": "3",
-    "basefolder": "media"
+    "basefolder": "media",
+    "modulo": 3
 }

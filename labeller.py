@@ -39,7 +39,7 @@ lines = [x.split(",")[:2] for x in lines]
 lines = {(int(x[0]), int(x[1])) for x in lines}
 
 
-nr = 0
+nr = conf["modulo"]
 for a, f in enumerate(sorted(glob.glob(f"{dir}*.png"))):
     if a % 1 != nr:
         continue
