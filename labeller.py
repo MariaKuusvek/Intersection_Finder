@@ -22,10 +22,10 @@ def clickHandler(event, x, y, flags, params):
     #    crosses.append((x,y))
     hovercoords = (x,y)
 
-folder1 = "black_gif_1km"
-folder2 = "map_gif_1km"
-folder3 = "orto_gif_1km"
-basefolder = "sample_maps_zipped"
+folder1 = "train_black"
+folder2 = "train_map"
+folder3 = "train_orto"
+basefolder = "temp"
 folder = folder2
 
 dir = f"{basefolder}{os.path.sep}{folder}{os.path.sep}"
@@ -59,8 +59,8 @@ for a, f in enumerate(sorted(glob.glob(f"{dir}*.png"))):
         continue
 
     #p = os.fsdecode(f)
-    print(f"sample_maps_zipped{os.path.sep}{folder}{os.path.sep}" + p)
-    im = cv2.imread(f"sample_maps_zipped{os.path.sep}{folder}{os.path.sep}" + p)
+    print(f"{basefolder}{os.path.sep}{folder}{os.path.sep}" + p)
+    im = cv2.imread(f"{basefolder}{os.path.sep}{folder}{os.path.sep}" + p)
     #cap = cv2.VideoCapture()
     #ret, im = cap.read()
     #cap.release()
@@ -97,13 +97,13 @@ for a, f in enumerate(sorted(glob.glob(f"{dir}*.png"))):
             del crosses[ci]
         elif k == ord(conf["folder1_key"]):
             folder = folder1
-            im = cv2.imread(f"sample_maps_zipped{os.path.sep}{folder}{os.path.sep}" + p)
+            im = cv2.imread(f"{basefolder}{os.path.sep}{folder}{os.path.sep}" + p)
         elif k == ord(conf["folder2_key"]):
             folder = folder2
-            im = cv2.imread(f"sample_maps_zipped{os.path.sep}{folder}{os.path.sep}" + p)
+            im = cv2.imread(f"{basefolder}{os.path.sep}{folder}{os.path.sep}" + p)
         elif k == ord(conf["folder3_key"]):
             folder = folder3
-            im = cv2.imread(f"sample_maps_zipped{os.path.sep}{folder}{os.path.sep}" + p)
+            im = cv2.imread(f"{basefolder}{os.path.sep}{folder}{os.path.sep}" + p)
 
     savef = open("saved", "a")
     savef.write(",".join(str(f).split(".")[0].split("_")[1:]))
