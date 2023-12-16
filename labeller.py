@@ -69,10 +69,12 @@ for a, f in enumerate(sorted(glob.glob(f"{dir}*.png"))):
     cv2.namedWindow("i1") 
     cv2.setMouseCallback("i1", clickHandler)
     clickmode = "add"
+    ctr = 0
     while 1:
         imn = im.copy()
+        ctr+=1
         for c in crosses:
-            imn = cv2.circle(imn, (int(c[0] / conf['dimx'] * 1000), int(c[1] / conf['dimy'] * 1000)), 3, (255,0,0), 2)
+            imn = cv2.circle(imn, (int(c[0] / conf['dimx'] * 1000), int(c[1] / conf['dimy'] * 1000)), ((ctr//10)%10)+1, ((ctr*11)%255,(ctr*7)%255,(ctr*3)%255), 2)
         imn = cv2.resize(imn, (conf["dimx"], conf["dimy"]))
         cv2.imshow("i1",imn)
         k = cv2.waitKey(1)
