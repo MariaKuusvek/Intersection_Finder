@@ -22,7 +22,7 @@ def clickHandler(event, x, y, flags, params):
 folder1 = "train_black"
 folder2 = "train_map"
 folder3 = "train_orto"
-folder4 = "train_orto"
+folder4 = "train_virfoivrmeiof"
 basefolder = conf["basefolder"]
 folder = folder3
 
