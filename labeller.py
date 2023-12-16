@@ -7,6 +7,8 @@ import glob
 import json
 import sys
 
+import client
+
 conf = json.loads(open("seetings.json","r").read())
 
 
@@ -39,6 +41,7 @@ except:
     lines = []
 lines = [x.split(",")[:2] for x in lines]
 lines = {(int(x[0]), int(x[1])) for x in lines}
+amount_done = len(lines)
 
 
 nr = conf["modulo"]
@@ -47,6 +50,8 @@ for a, f in enumerate(sorted(glob.glob(f"{dir}*.png"))):
     if a % 32 != nr:
         continue
     #print(f)
+    others = [x.replace(",", ": ") for x in client.send(conf["name"], amount_done).split(";")]
+    others = ", ".join(others)
     p = "_".join(f.split(os.path.sep)[-1].split("_")[1:])
     n = p.split(".")[0].split("_")
     n1, n2 = int(n[0]), int(n[1])
@@ -74,6 +79,7 @@ for a, f in enumerate(sorted(glob.glob(f"{dir}*.png"))):
         imn = im.copy()
         ctr+=1
         imn = cv2.putText(imn, f"{a//32}/{6000//32}", (50,50), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,0,255), 1)
+        imn = cv2.putText(imn, others, (50, 100), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,0,255), 1)
         for c in crosses:
             imn = cv2.circle(imn, (int(c[0] / conf['dimx'] * 1000), int(c[1] / conf['dimy'] * 1000)), ((ctr//10)%10)+1, ((ctr*11)%255,(ctr*7)%255,(ctr*3)%255), 2)
         imn = cv2.resize(imn, (conf["dimx"], conf["dimy"]))
