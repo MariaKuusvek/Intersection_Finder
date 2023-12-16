@@ -40,8 +40,9 @@ lines = {(int(x[0]), int(x[1])) for x in lines}
 
 
 nr = conf["modulo"]
+#print(glob.glob(f"{dir}*.png"))
 for a, f in enumerate(sorted(glob.glob(f"{dir}*.png"))):
-    if a % 1 != nr:
+    if a % 4 != nr:
         continue
     #print(f)
     p = "_".join(f.split(os.path.sep)[-1].split("_")[1:])
