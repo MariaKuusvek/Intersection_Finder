@@ -28,10 +28,10 @@ nr = 0
 for a, f in enumerate(sorted(os.listdir(dir))):
     if a % 1 != nr:
         continue
-    print(f)
+    #print(f)
     n = f.decode().split(".")[0].split("_")[1:]
     n1, n2 = int(n[0]), int(n[1])
-    print(n1, n2)
+    #print(n1, n2)
     if (n1, n2) in lines:
         continue
 
