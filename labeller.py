@@ -40,12 +40,7 @@ for a, f in enumerate(sorted(glob.glob(f"{dir}*.png"))):
         continue
 
     p = os.fsdecode(f)
-<<<<<<< HEAD
     im = cv2.imread(f"sample_maps_zipped{os.path.sep}map_gif_1km{os.path.sep}" + p)
-=======
-    im = cv2.imread("sample_maps_zipped/map_gif_1km/" + p)
-    print(f)
->>>>>>> ecd99a2 (merge)
     #cap = cv2.VideoCapture()
     #ret, im = cap.read()
     #cap.release()
