@@ -9,7 +9,13 @@ def clickHandler(event, x, y, flags, params):
     if event == cv2.EVENT_LBUTTONDOWN:
         crosses.append((x,y))
 
-dir = f"sample_maps_zipped{os.path.sep}map_gif_1km{os.path.sep}"
+folder1 = "black_gif_1km"
+folder2 = "map_gif_1km"
+folder3 = "orto_gif_1km"
+basefolder = "sample_maps_zipped"
+folder = folder2
+
+dir = f"{basefolder}{os.path.sep}{folder}{os.path.sep}"
 
 premadef = open("mariaIntersections.txt", "r")
 premade = {}
@@ -26,6 +32,7 @@ except:
 lines = [x.split(",")[:2] for x in lines]
 lines = {(int(x[0]), int(x[1])) for x in lines}
 
+
 nr = 0
 for a, f in enumerate(sorted(glob.glob(f"{dir}*.png"))):
     if a % 1 != nr:
@@ -38,7 +45,8 @@ for a, f in enumerate(sorted(glob.glob(f"{dir}*.png"))):
         continue
 
     p = os.fsdecode(f)
-    im = cv2.imread(f"sample_maps_zipped{os.path.sep}map_gif_1km{os.path.sep}" + p)
+    print(f"sample_maps_zipped{os.path.sep}{folder}{os.path.sep}" + p)
+    im = cv2.imread(f"sample_maps_zipped{os.path.sep}{folder}{os.path.sep}" + p)
     #cap = cv2.VideoCapture()
     #ret, im = cap.read()
     #cap.release()
@@ -59,6 +67,15 @@ for a, f in enumerate(sorted(glob.glob(f"{dir}*.png"))):
             crosses = []
         elif k == ord("q"):
             os.exit()
+        elif k == ord("1"):
+            folder = folder1
+            im = cv2.imread(f"sample_maps_zipped{os.path.sep}{folder}{os.path.sep}" + p)
+        elif k == ord("2"):
+            folder = folder2
+            im = cv2.imread(f"sample_maps_zipped{os.path.sep}{folder}{os.path.sep}" + p)
+        elif k == ord("3"):
+            folder = folder3
+            im = cv2.imread(f"sample_maps_zipped{os.path.sep}{folder}{os.path.sep}" + p)
 
     savef = open("saved", "a")
     savef.write(",".join(str(f).split(".")[0].split("_")[1:]))
