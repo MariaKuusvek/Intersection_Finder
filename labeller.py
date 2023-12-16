@@ -60,9 +60,9 @@ for a, f in enumerate(sorted(glob.glob(f"{dir}*.png"))):
     #cap.release()
 
     coords = str(f).split(".")[0].split("_")[-2:]
-    if coords:
+    try:
         crosses = [(int(int(i[0]) * conf["dimx"] / 1000), int(int(i[1]) * conf["dimy"] / 1000)) for i in premade[tuple(coords)]]
-    else:
+    except:
         crosses = []
     cv2.namedWindow("i1") 
     cv2.setMouseCallback("i1", clickHandler)
