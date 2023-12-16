@@ -21,7 +21,7 @@ folder1 = "train_black"
 folder2 = "train_map"
 folder3 = "train_orto"
 basefolder = conf["basefolder"]
-folder = folder2
+folder = folder3
 
 dir = f"{basefolder}{os.path.sep}{folder}{os.path.sep}"
 
@@ -44,7 +44,7 @@ lines = {(int(x[0]), int(x[1])) for x in lines}
 nr = conf["modulo"]
 #print(glob.glob(f"{dir}*.png"))
 for a, f in enumerate(sorted(glob.glob(f"{dir}*.png"))):
-    if a % 4 != nr:
+    if a % 32 != nr:
         continue
     #print(f)
     p = "_".join(f.split(os.path.sep)[-1].split("_")[1:])
