@@ -52,16 +52,16 @@ for a, f in enumerate(sorted(glob.glob(f"{dir}*.png"))):
     if a % 1 != nr:
         continue
     #print(f)
-    p = f.split(os.path.sep)[-1]
-    n = p.split(".")[0].split("_")[1:]
+    p = "_".join(f.split(os.path.sep)[-1].split("_")[1:])
+    n = p.split(".")[0].split("_")
     n1, n2 = int(n[0]), int(n[1])
     #print(n1, n2)
     if (n1, n2) in lines:
         continue
 
     #p = os.fsdecode(f)
-    print(f"{basefolder}{os.path.sep}{folder}{os.path.sep}" + p)
-    im = cv2.imread(f"{basefolder}{os.path.sep}{folder}{os.path.sep}" + p)
+    print(f"{basefolder}{os.path.sep}{folder}{os.path.sep}" + folder.split("_")[1] + "_" + p)
+    im = cv2.imread(f"{basefolder}{os.path.sep}{folder}{os.path.sep}" + folder.split("_")[1] + "_" + p)
     #cap = cv2.VideoCapture()
     #ret, im = cap.read()
     #cap.release()
@@ -99,16 +99,19 @@ for a, f in enumerate(sorted(glob.glob(f"{dir}*.png"))):
             del crosses[mino]
         elif k == ord(conf["folder1_key"]):
             folder = folder1
-            im = cv2.imread(f"{basefolder}{os.path.sep}{folder}{os.path.sep}" + p)
+            print(f"{basefolder}{os.path.sep}{folder}{os.path.sep}" + folder.split("_")[1] + "_" + p)
+            im = cv2.imread(f"{basefolder}{os.path.sep}{folder}{os.path.sep}" + folder.split("_")[1] + "_" + p)
         elif k == ord(conf["folder2_key"]):
             folder = folder2
-            im = cv2.imread(f"{basefolder}{os.path.sep}{folder}{os.path.sep}" + p)
+            print(f"{basefolder}{os.path.sep}{folder}{os.path.sep}" + folder.split("_")[1] + "_" + p)
+            im = cv2.imread(f"{basefolder}{os.path.sep}{folder}{os.path.sep}" + folder.split("_")[1] + "_" + p)
         elif k == ord(conf["folder3_key"]):
             folder = folder3
-            im = cv2.imread(f"{basefolder}{os.path.sep}{folder}{os.path.sep}" + p)
+            print(f"{basefolder}{os.path.sep}{folder}{os.path.sep}" + folder.split("_")[1] + "_" + p)
+            im = cv2.imread(f"{basefolder}{os.path.sep}{folder}{os.path.sep}" + folder.split("_")[1] + "_" + p)
 
     savef = open("saved", "a")
-    savef.write(",".join(str(f).split(".")[0].split("_")[1:]))
+    savef.write(",".join(",".join(str(f).split(".")[0].split("_")[1:]).split(",")[1:]))
     savef.write(",")
     savef.write("|".join([str(c[0])+";"+str(c[0]) for c in crosses]))
     savef.write("\n")
