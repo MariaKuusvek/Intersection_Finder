@@ -87,6 +87,8 @@ for a, f in enumerate(sorted(glob.glob(f"{dir}*.png"))):
         elif k == ord(conf["cross_key"]):
             crosses.append(hovercoords)
         elif k == ord(conf["del_single_key"]):
+            if not crosses:
+                continue
             mind = 1e9
             mino = None
             for ci in range(len(crosses)):
