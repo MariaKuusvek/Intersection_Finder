@@ -13,7 +13,7 @@ def clickHandler(event, x, y, flags, params):
     #if event == cv2.EVENT_LBUTTONDOWN:
     #    crosses.append((x,y))
     global hovercoords
-    hovercoords = (x,y)
+    hovercoords = (x, y)
 
 folder1 = "train_black"
 folder2 = "train_map"
@@ -68,7 +68,8 @@ for a, f in enumerate(sorted(glob.glob(f"{dir}*.png"))):
     while 1:
         imn = im.copy()
         for c in crosses:
-            imn = cv2.circle(imn, c, 3, (255,0,0), 2)
+            imn = cv2.circle(imn, (int(c[0] / conf['dimx'] * 1000), int(c[1] / conf['dimy'] * 1000)), 3, (255,0,0), 2)
+        imn = cv2.resize(imn, (conf["dimx"], conf["dimy"]))
         cv2.imshow("i1",imn)
         k = cv2.waitKey(1)
         if k == ord(conf["next_key"]):
@@ -106,6 +107,6 @@ for a, f in enumerate(sorted(glob.glob(f"{dir}*.png"))):
     savef = open("saved", "a")
     savef.write(",".join(",".join(str(f).split(".")[0].split("_")[1:]).split(",")[1:]))
     savef.write(",")
-    savef.write("|".join([str(c[0])+";"+str(c[0]) for c in crosses]))
+    savef.write("|".join([str(c[0] / conf['dimx'] * 1000)+";"+str(c[1] / conf['dimy'] * 1000) for c in crosses]))
     savef.write("\n")
     savef.close()

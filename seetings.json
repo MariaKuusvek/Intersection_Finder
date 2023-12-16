@@ -7,6 +7,8 @@
     "folder1_key": "1",
     "folder2_key": "2",
     "folder3_key": "3",
-    "basefolder": "media",
-    "modulo": 3
+    "basefolder": "temp",
+    "modulo": 2,
+    "dimx": 900,
+    "dimy": 900
 }
