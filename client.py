@@ -15,4 +15,4 @@ def send(name, done):
 
 
 if __name__ == '__main__':
-    send("Kristjan", 0)
+    send("Maria", 250)

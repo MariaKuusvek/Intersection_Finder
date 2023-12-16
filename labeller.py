@@ -22,6 +22,7 @@ def clickHandler(event, x, y, flags, params):
 folder1 = "train_black"
 folder2 = "train_map"
 folder3 = "train_orto"
+folder4 = "train_orto"
 basefolder = conf["basefolder"]
 folder = folder3
 
@@ -116,6 +117,11 @@ for a, f in enumerate(sorted(glob.glob(f"{dir}*.png"))):
             folder = folder3
             print(f"{basefolder}{os.path.sep}{folder}{os.path.sep}" + folder.split("_")[1] + "_" + p)
             im = cv2.imread(f"{basefolder}{os.path.sep}{folder}{os.path.sep}" + folder.split("_")[1] + "_" + p)
+        elif k == ord(conf["folder4_key"]):
+            folder = folder4
+            im1 = cv2.imread(f"{basefolder}{os.path.sep}{folder2}{os.path.sep}" + folder2.split("_")[1] + "_" + p)
+            im2 = cv2.imread(f"{basefolder}{os.path.sep}{folder3}{os.path.sep}" + folder3.split("_")[1] + "_" + p)
+            im = im1 // 2 + im2 // 2
         elif k == ord(conf["back_key"]):
             savef = open("saved","r")
             contents = savef.readlines()[:-1]
