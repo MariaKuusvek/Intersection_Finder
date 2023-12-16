@@ -4,6 +4,14 @@ import math
 import os
 import glob
 
+conf = {
+    "next_key": " ",
+    "del_key": "d",
+    "quit_key": "q",
+    "cross_key": "a",
+    "del_single_key": "s"
+}
+
 
 hovercoords = (0,0)
 def clickHandler(event, x, y, flags, params):
